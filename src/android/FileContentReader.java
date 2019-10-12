@@ -10,6 +10,7 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -30,7 +31,7 @@ public class FileContentReader extends CordovaPlugin {
     private String contentUri;
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         this.callback = callbackContext;
         this.contentUri = args.getString(0);
 
@@ -41,7 +42,7 @@ public class FileContentReader extends CordovaPlugin {
         return false;
     }
 
-    private void readContent() {
+    private void readContent() throws JSONException {
         Context appContext = this.cordova.getActivity().getApplicationContext();
         Uri uri = Uri.parse(this.contentUri);
 
