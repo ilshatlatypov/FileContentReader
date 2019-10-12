@@ -2,6 +2,7 @@ package cordova.plugin.file.content.reader;
 
 import android.app.Activity;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -9,6 +10,7 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -30,7 +32,7 @@ public class FileContentReader extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
         this.callback = callbackContext;
-        this.uriStr = args.getString(0);
+        this.contentUri = args.getString(0);
 
         if (action.equals(ACTION_READ_CONTENT)) {
             readContent();
@@ -46,7 +48,7 @@ public class FileContentReader extends CordovaPlugin {
         InputStream is = null;
         ByteArrayOutputStream os = null;
         try {
-            is = appContext.getContentResolver().openInputStream(pvUrl);
+            is = appContext.getContentResolver().openInputStream(uri);
             os = new ByteArrayOutputStream();
 
             final int BUFFER_SIZE = 8192;
