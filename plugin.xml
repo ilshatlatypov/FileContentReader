@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-file-content-reader" version="1.0.0">
+   <name>FileContentReader</name>
+
+   <js-module name="FileContentReader" src="www/FileContentReader.js">
+      <clobbers target="fileContentReader" />
+   </js-module>
+
+   <platform name="android">
+      <config-file parent="/*" target="res/xml/config.xml">
+         <feature name="FileContentReader">
+            <param name="android-package" value="cordova.plugin.file.content.reader.FileContentReader" />
+         </feature>
+      </config-file>
+      <config-file parent="/*" target="AndroidManifest.xml" />
+      <source-file src="src/android/FileContentReader.java" target-dir="src/cordova/plugin/file/content/reader" />
+   </platform>
+</plugin>

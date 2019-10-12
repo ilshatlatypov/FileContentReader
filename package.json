@@ -1,0 +1,11 @@
+{
+  "name": "filecontentreader",
+  "version": "1.1.0",
+  "description": "Cordova plugin for Android to read file by content URI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ilshat Latypov",
+  "license": "ISC"
+}
