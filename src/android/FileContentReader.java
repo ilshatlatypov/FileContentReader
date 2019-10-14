@@ -36,7 +36,13 @@ public class FileContentReader extends CordovaPlugin {
         this.contentUri = args.getString(0);
 
         if (action.equals(ACTION_READ_CONTENT)) {
-            readContent();
+            cordova.getThreadPool().execute(() -> {
+                try {
+                    readContent();
+                } catch (JSONException e) {
+                    callback.error(e.getMessage());
+                }
+            });
             return true;
         } else if (action.equals(ACTION_GET_FILE_DETAILS)) {
             getFileDetails();
